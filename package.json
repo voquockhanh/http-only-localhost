@@ -1,0 +1,22 @@
+{
+  "name": "next-cookie-authz-api-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voquockhanh/next-cookie-authz-api-sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/voquockhanh/next-cookie-authz-api-sample/issues"
+  },
+  "homepage": "https://github.com/voquockhanh/next-cookie-authz-api-sample#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
