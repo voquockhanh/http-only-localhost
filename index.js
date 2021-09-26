@@ -2,6 +2,8 @@ var express = require("express");
 const cookieParser = require("cookie-parser");
 var app = express();
 var PORT = 8080;
+const tokenKey = "auth-token";
+const tokenValue = "JWT_token_value";
 
 app.use(cookieParser());
 
@@ -13,10 +15,9 @@ app.get("/debug", function (req, res) {
 
 app.post("/login", function (req, res) {
   console.log("/login route", process.env.NODE_ENV);
-  const token = "*/*--=3432432$%^%$";
 
   res
-    .cookie("auth-token", token, {
+    .cookie(tokenKey, tokenValue, {
       httpOnly: true,
       sameSite: "strict",
       path: "/",
@@ -27,16 +28,17 @@ app.post("/login", function (req, res) {
 
 app.get("/validate", function (req, res) {
   console.log("/validate route", process.env.NODE_ENV);
-  if (!req.cookies["auth-token"]) {
-    return res.status(401).json({ message: "invalid token" });
+  let authToken = req.cookies[tokenKey];
+  if (authToken && authToken === tokenValue) {
+    return res.status(200).json({ message: "success" });
   }
 
-  res.status(200).json({ message: "success" });
+  return res.status(401).json({ message: "invalid token" });
 });
 
 app.post("/logout", function (req, res) {
   console.log("/logout route", process.env.NODE_ENV);
-  res.clearCookie("auth-token").status(200).json({ message: "success" });
+  res.clearCookie(tokenKey).status(200).json({ message: "success" });
 });
 
 app.get("/", (req, res) => {
