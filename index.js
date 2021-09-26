@@ -27,7 +27,7 @@ app.get("/debug", function (req, res) {
 });
 
 app.get("/login", function (req, res) {
-  console.log("login route", process.env.NODE_ENV);
+  console.log("/login route", process.env.NODE_ENV);
   const token = "*/*--=3432432$%^%$";
 
   res
@@ -41,6 +41,7 @@ app.get("/login", function (req, res) {
 });
 
 app.get("/validate", function (req, res) {
+  console.log("/validate route", process.env.NODE_ENV);
   if (!req.cookies["auth-token"]) {
     return res.status(401).json({ message: "invalid token" });
   }
@@ -49,11 +50,8 @@ app.get("/validate", function (req, res) {
 });
 
 app.get("/logout", function (req, res) {
-  console.log("login route", process.env.NODE_ENV);
-  res
-    .clearCookie("auth-token")
-    .status(200)
-    .json({ message: "success" });
+  console.log("/logout route", process.env.NODE_ENV);
+  res.clearCookie("auth-token").status(200).json({ message: "success" });
 });
 
 app.get("/", (req, res) => {
