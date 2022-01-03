@@ -1,11 +1,15 @@
 var express = require("express");
 const cookieParser = require("cookie-parser");
+var cors = require('cors')
+
 var app = express();
 var PORT = 8080;
 const tokenKey = "auth-token";
 const tokenValue = "JWT_token_value";
 
+
 app.use(cookieParser());
+app.use(cors())
 
 // Without middleware
 app.get("/debug", function (req, res) {
