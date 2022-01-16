@@ -3,6 +3,8 @@ Run server
 - cd /server
 - npm install
 - npm run start
+
+
 Run front-end
 - cd /frontend
 - npm install
